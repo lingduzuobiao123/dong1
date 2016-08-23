@@ -1,3 +1,42 @@
+
+时间
+https://github.com/chenglei1986/DatePicker
+https://github.com/limxing/DatePicker
+https://github.com/SingleCycleKing/CustomTimePicker
+https://github.com/chenxiruanhai/TimePicker
+https://github.com/helloJp/WheelView
+
+下拉刷新
+https://github.com/shontauro/android-pulltorefresh-and-loadmore
+https://github.com/johannilsson/android-pulltorefresh
+https://github.com/erikwt/PullToRefresh-ListView
+https://github.com/caohaoping/Android-PullToRefreshAndLoad
+
+
+100% — FF
+95% — F2
+90% — E6
+85% — D9
+80% — CC
+75% — BF
+70% — B3
+65% — A6
+60% — 99
+55% — 8C
+50% — 80
+45% — 73
+40% — 66
+35% — 59
+30% — 4D
+25% — 40
+20% — 33
+15% — 26
+10% — 1A
+5% — 0D
+0% — 00
+格式如#00FFFFFF，前两位代表不透明度的十六进制。00表示完全透明，FF就是全不透明。依次递增。
+
+
 https://github.com/lingduzuobiao123/dong1
 https://coding.net/user
 http://www.ihref.com/read-16514.html
