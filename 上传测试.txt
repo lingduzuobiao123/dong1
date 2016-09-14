@@ -1,3 +1,16 @@
+http://www.open-open.com/lib/view/open1436262653692.html
+https://github.com/jiangqqlmj/FastDev4Android
+http://www.cnblogs.com/ut2016-progam/p/5673127.html
+http://blog.csdn.net/lmj623565791/article/details/47911083
+https://github.com/jiangqqlmj/FastDev4Android
+http://download.csdn.net/download/qq_28656671/9414236
+http://blog.csdn.net/itachi85/article/details/51190687
+
+okhhtp3
+https://github.com/MrZhousf/OkHttp3 
+https://github.com/BaronZ88/WeatherStyle
+https://github.com/qingyongai/VolleyOkExtension
+https://github.com/jhanay/OkNet
 
 时间
 https://github.com/chenglei1986/DatePicker
@@ -12,6 +25,19 @@ https://github.com/johannilsson/android-pulltorefresh
 https://github.com/erikwt/PullToRefresh-ListView
 https://github.com/caohaoping/Android-PullToRefreshAndLoad
 
+调用导航
+http://blog.csdn.net/mirkerson/article/details/49821507
+http://blog.csdn.net/lu1024188315/article/details/51780855 调用高德导航
+http://developer.amap.com/api/uri-api/android-uri-explain/ 
+http://blog.csdn.net/it1039871366/article/details/46725537 百度导航
+http://lbsyun.baidu.com/index.php?title=uri/api/android 
+
+
+https://github.com/guizhigang/LGImageCompressor  图片压缩处理
+
+http://download.jikexueyuan.com/ 极客学院 资源下载
+
+http://www.jianshu.com/ 简书
 
 100% — FF
 95% — F2
