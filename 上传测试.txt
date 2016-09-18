@@ -39,6 +39,8 @@ http://download.jikexueyuan.com/ 极客学院 资源下载
 
 http://www.jianshu.com/ 简书
 
+http://www.javaapk.com/ 安卓源码服务专家
+
 100% — FF
 95% — F2
 90% — E6
@@ -67,3 +69,14 @@ https://github.com/lingduzuobiao123/dong1
 https://coding.net/user
 http://www.ihref.com/read-16514.html
 http://m.blog.csdn.net/article/details?id=50261857
+
+http://download.jikexueyuan.com/detail/id/2142.html 仿哔哔哔哩源码
+https://github.com/HotBitmapGG/OhMyBiliBili 仿哔哔哔哩源码
+https://github.com/HotBitmapGG/RxZhiHu Android项目源码本站第四个知乎app项目源码知了日报
+http://www.javaapk.com/source/50831.html Android项目源码每天一张精选妹纸图
+https://github.com/HotBitmapGG/MoeQuest Android项目源码萌妹纸福利图集合项目源码
+http://www.javaapk.com/source/20181.html Android应用源码美女图集瀑布流看图项目源码
+http://www.javaapk.com/source/11511.html Android项目源码300美女图片客户端源码
+
+
+https://github.com/liaohuqiu/android-Ultra-Pull-To-Refresh 下拉刷新

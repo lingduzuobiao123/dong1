@@ -4,4 +4,27 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="font10">10.0dp</dimen>
+    <dimen name="font11">11.0dp</dimen>
+    <dimen name="font12">12.0dp</dimen>
+    <dimen name="font13">13.0sp</dimen>
+    <dimen name="font14">14.0sp</dimen>
+    <dimen name="font15">15.0dp</dimen>
+    <dimen name="font16">16.0dp</dimen>
+    <dimen name="font17">17.0dp</dimen>
+    <dimen name="font18">18.0dp</dimen>
+    <dimen name="font20">20.0dp</dimen>
+    <dimen name="font22">22.0dp</dimen>
+    <dimen name="font23">23.0dp</dimen>
+    <dimen name="font25">25.0dp</dimen>
+    <dimen name="font28">28.0dp</dimen>
+    <dimen name="font30">30.0dp</dimen>
+    <dimen name="font32">32.0dp</dimen>
+    <dimen name="font35">35.0dp</dimen>
+    <dimen name="font40">40.0dp</dimen>
+    <dimen name="font45">45.0dp</dimen>
+    <dimen name="font56">56.0dp</dimen>
+    
+    <dimen name="line_height">1px</dimen>
+    
 </resources>

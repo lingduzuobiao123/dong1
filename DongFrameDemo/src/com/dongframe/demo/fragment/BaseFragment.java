@@ -1,4 +1,4 @@
-package com.dongframe.demo.activity;
+package com.dongframe.demo.fragment;
 
 import com.dongframe.demo.R;
 import com.dongframe.demo.utils.WifigxApUtil;
@@ -6,22 +6,47 @@ import com.dongframe.demo.utils.WifigxApUtil;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
-public abstract class BaseActivity extends FragmentActivity
+public abstract class BaseFragment extends Fragment
 {
     private Dialog proDialog;
     
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    public void onCreate(Bundle savedInstanceState)
     {
+        // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
+    }
+    
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
+        // TODO Auto-generated method stub
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+    
+    @Override
+    public void onDestroy()
+    {
+        // TODO Auto-generated method stub
+        super.onDestroy();
+    }
+    
+    @Override
+    public void onDestroyView()
+    {
+        // TODO Auto-generated method stub
+        super.onDestroyView();
     }
     
     public void initLoadDialog()
     {
-        proDialog = new ProgressDialog(this);
+        proDialog = new ProgressDialog(getActivity());
         proDialog.setTitle("加载中...");
     }
     
@@ -48,12 +73,12 @@ public abstract class BaseActivity extends FragmentActivity
     
     public void showMessage(String msg)
     {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
     }
     
     public void showMessage(int msg)
     {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
     }
     
     /**
@@ -64,7 +89,7 @@ public abstract class BaseActivity extends FragmentActivity
     public boolean checkNetWork()
     {
         //无网络不可用
-        if (!WifigxApUtil.isNetConnected(this))
+        if (!WifigxApUtil.isNetConnected(getActivity()))
         {
             showMessage(R.string.net_not_available);
             return false;
