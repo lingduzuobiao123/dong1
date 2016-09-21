@@ -1,0 +1,6 @@
+*.class
+CameraSDK/bin/AndroidManifest.xml
+CameraSDK/bin/camerasdk_github.jar
+CameraSDK/bin/res/crunch/drawable-hdpi/camerasdk_eraser2.png
+CameraSDK/bin/res/crunch/drawable-xhdpi/camerasdk_icon_seek_thumb.png
+*.classpath

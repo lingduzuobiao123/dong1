@@ -41,6 +41,23 @@ http://www.jianshu.com/ 简书
 
 http://www.javaapk.com/ 安卓源码服务专家
 
+
+
+时间
+https://github.com/chenglei1986/DatePicker
+https://github.com/limxing/DatePicker
+https://github.com/SingleCycleKing/CustomTimePicker
+https://github.com/chenxiruanhai/TimePicker
+https://github.com/helloJp/WheelView
+
+下拉刷新
+https://github.com/shontauro/android-pulltorefresh-and-loadmore
+https://github.com/johannilsson/android-pulltorefresh
+https://github.com/erikwt/PullToRefresh-ListView
+https://github.com/caohaoping/Android-PullToRefreshAndLoad
+https://github.com/liaohuqiu/android-Ultra-Pull-To-Refresh 下拉刷新
+
+
 100% — FF
 95% — F2
 90% — E6
@@ -68,6 +85,17 @@ http://www.javaapk.com/ 安卓源码服务专家
 https://github.com/lingduzuobiao123/dong1
 https://coding.net/user
 http://www.ihref.com/read-16514.html
+http://m.blog.csdn.net/article/details?id=50261857。
+
+  https://github.com/JeroenMols/LandscapeVideoCamera 视频录像
+   https://github.com/wuhaoyu1990/MagicCamera 拍照 包含美颜等40余种实时滤镜相机，可拍照、录像、图片修改
+   https://github.com/Skykai521/StickerCamera 拍照 贴纸标签相机,功能:拍照,相片裁剪,给图片贴贴纸,打标签。
+   https://github.com/zxfnicholas/CameraSDK 拍照 非常实用的类似新浪微博的多图片选择工具
+   https://github.com/pinguo-yuyidong/Camera2 
+
+https://github.com/lingduzuobiao123/dong1
+https://coding.net/user
+http://www.ihref.com/read-16514.html
 http://m.blog.csdn.net/article/details?id=50261857
 
 http://download.jikexueyuan.com/detail/id/2142.html 仿哔哔哔哩源码
@@ -79,4 +107,3 @@ http://www.javaapk.com/source/20181.html Android应用源码美女图集瀑布流看图项目源
 http://www.javaapk.com/source/11511.html Android项目源码300美女图片客户端源码
 
 
-https://github.com/liaohuqiu/android-Ultra-Pull-To-Refresh 下拉刷新
