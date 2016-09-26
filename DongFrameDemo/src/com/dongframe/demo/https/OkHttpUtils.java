@@ -1,6 +1,9 @@
 package com.dongframe.demo.https;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -141,6 +144,17 @@ public class OkHttpUtils
             {
                 if (response.isSuccessful())
                 {
+                    InputStream inputStream = response.body().byteStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                    String result = "";
+                    String line = "";
+                    while (null != (line = reader.readLine()))
+                    {
+                        result += line;
+                        
+                    }
+                    System.out.println(result);
+                    
                     String jsonStr = response.body().toString();
                     LogUtils.LOGE(TAG, "response==" + jsonStr);
                     final JSONObject jsonObject = new JSONObject(jsonStr).optJSONObject("result");
