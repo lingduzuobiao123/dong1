@@ -22,7 +22,7 @@ public abstract class BaseActivity extends FragmentActivity
     public void initLoadDialog()
     {
         proDialog = new ProgressDialog(this);
-        proDialog.setTitle("加载中...");
+        proDialog.setTitle(R.string.dialog_progress);
     }
     
     public void showLoadDialog()
