@@ -7,85 +7,130 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="@drawable/image_login_top" />
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="63dp"
+        android:layout_marginRight="63dp"
+        android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="@string/login_user_name" />
-
-        <EditText
-            android:id="@+id/userNmaeEidt"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/textView1"
-            android:singleLine="true" />
-    </RelativeLayout>
+            android:layout_marginTop="52dp" >
 
-    <View style="@style/login_line1" />
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="9dp"
+                android:layout_marginTop="9dp"
+                android:text="@string/login_user_name"
+                android:textColor="@color/color_text_1"
+                android:textSize="@dimen/font14" />
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+            <EditText
+                android:id="@+id/userNmaeEidt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/textView1"
+                android:background="@color/transparent"
+                android:singleLine="true"
+                android:textColor="@color/color_text_1"
+                android:textCursorDrawable="@drawable/color_login_cursor"
+                android:textSize="@dimen/font14" />
+        </RelativeLayout>
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="@string/login_user_name" />
+        <View style="@style/login_line1" />
 
-        <EditText
-            android:id="@+id/passwordEidt"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/textView2"
-            android:password="true"
-            android:singleLine="true" />
-    </RelativeLayout>
+            android:layout_marginTop="7dp" >
 
-    <View style="@style/login_line1" />
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="9dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/login_user_pass"
+                android:textColor="@color/color_text_1"
+                android:textSize="@dimen/font14" />
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+            <EditText
+                android:id="@+id/passwordEidt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/textView2"
+                android:background="@color/transparent"
+                android:password="true"
+                android:singleLine="true"
+                android:textColor="@color/color_text_1"
+                android:textCursorDrawable="@drawable/color_login_cursor"
+                android:textSize="@dimen/font14" />
+        </RelativeLayout>
 
-        <CheckBox
-            android:id="@+id/rememberCheck"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="@string/login_remember_pass" />
+        <View style="@style/login_line1" />
 
-        <TextView
-            android:id="@+id/forgetPassText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:text="@string/login_forget_pass" />
-    </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
 
-    <Button
-        android:id="@+id/loginBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/login_btn" />
+            <CheckBox
+                android:id="@+id/rememberCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:button="@drawable/check_login_pass"
+                android:gravity="center_vertical"
+                android:paddingBottom="14dp"
+                android:paddingRight="14dp"
+                android:paddingTop="14dp"
+                android:text="@string/login_remember_pass"
+                android:textColor="@color/color_text_2"
+                android:textSize="@dimen/font10" />
 
-    <Button
-        android:id="@+id/openGPSBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/login_open_GPS" />
+            <TextView
+                android:id="@+id/forgetPassText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="6dp"
+                android:padding="14dp"
+                android:text="@string/login_forget_pass"
+                android:textColor="@color/color_text_2"
+                android:textSize="@dimen/font10" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/loginBtn"
+            style="@style/btn_currency_style"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="46dp"
+            android:background="@drawable/btn_login_normal"
+            android:text="@string/login_btn"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font20" />
+
+        <Button
+            android:id="@+id/openGPSBtn"
+            style="@style/btn_currency_style"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/btn_open_gps_normal"
+            android:text="@string/login_open_GPS"
+            android:textColor="@color/color_text_3"
+            android:textSize="@dimen/font14" />
+    </LinearLayout>
 
 </LinearLayout>

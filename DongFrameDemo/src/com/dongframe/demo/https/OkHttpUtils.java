@@ -140,25 +140,27 @@ public class OkHttpUtils
         public void onResponse(final Call call, final Response response)
             throws IOException
         {
+            InputStream inputStream = null;
             try
             {
                 if (response.isSuccessful())
                 {
-                    InputStream inputStream = response.body().byteStream();
+                    inputStream = response.body().byteStream();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                    String result = "";
+                    StringBuffer sb = new StringBuffer();
+                    String resultStr = "";
                     String line = "";
                     while (null != (line = reader.readLine()))
                     {
-                        result += line;
-                        
+                        sb.append(line + "\n");
+                        //                        resultStr += line;
                     }
-                    System.out.println(result);
-                    
-                    String jsonStr = response.body().toString();
-                    LogUtils.LOGE(TAG, "response==" + jsonStr);
-                    final JSONObject jsonObject = new JSONObject(jsonStr).optJSONObject("result");
+                    resultStr = sb.toString();
+                    //                    resultStr = response.body().toString();
+                    LogUtils.LOGI(TAG, "response==" + resultStr);
+                    final JSONObject jsonObject = new JSONObject(resultStr).optJSONObject("result");
                     final int statusCode = jsonObject.optInt("status", -2);
+                    final String msg = jsonObject.optString("msg", context.getString(R.string.http_failure));
                     if (statusCode == 0)
                     {
                         ((Activity)context).runOnUiThread(new Runnable()
@@ -168,14 +170,13 @@ public class OkHttpUtils
                             {
                                 if (null != callback)
                                 {
-                                    callback.onSuccess(statusCode, jsonObject, call, response);
+                                    callback.onSuccess(statusCode, msg, jsonObject, call, response);
                                 }
                             }
                         });
                     }
                     else
                     {
-                        final String msg = jsonObject.optString("msg", context.getString(R.string.http_failure));
                         ((Activity)context).runOnUiThread(new Runnable()
                         {
                             @Override
@@ -220,6 +221,13 @@ public class OkHttpUtils
                         }
                     }
                 });
+            }
+            finally
+            {
+                if (null != inputStream)
+                {
+                    inputStream.close();
+                }
             }
         }
         

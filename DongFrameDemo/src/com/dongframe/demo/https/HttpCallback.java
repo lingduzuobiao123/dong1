@@ -7,7 +7,7 @@ import okhttp3.Response;
 
 public interface HttpCallback
 {
-    void onSuccess(int statusCode, JSONObject jsonObject, Call call, Response response);
+    void onSuccess(int statusCode, String msg, JSONObject jsonObject, Call call, Response response);
     
     void onError(Call call, Exception e);
     

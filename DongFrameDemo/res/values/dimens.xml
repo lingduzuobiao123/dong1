@@ -26,5 +26,6 @@
     <dimen name="font56">56.0dp</dimen>
     
     <dimen name="line_height">1px</dimen>
+    <dimen name="cusour_width">1px</dimen>
     
 </resources>

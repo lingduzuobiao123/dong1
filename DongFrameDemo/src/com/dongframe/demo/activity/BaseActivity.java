@@ -48,12 +48,12 @@ public abstract class BaseActivity extends FragmentActivity
     
     public void showMessage(String msg)
     {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
     }
     
     public void showMessage(int msg)
     {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
     }
     
     /**

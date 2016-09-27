@@ -1,13 +1,19 @@
 package com.dongframe.demo.activity;
 
+import org.json.JSONObject;
+
 import com.dong.frame.view.ViewAttacher;
 import com.dongframe.demo.R;
+import com.dongframe.demo.constant.APIServer;
 import com.dongframe.demo.fragment.HomeFragment;
 import com.dongframe.demo.fragment.MessageFragment;
 import com.dongframe.demo.fragment.SettingFragment;
+import com.dongframe.demo.https.HttpCallback;
 import com.dongframe.demo.utils.LogUtils;
 import com.dongframe.demo.utils.StringUtils;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,6 +24,8 @@ import android.view.View.OnClickListener;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import okhttp3.Call;
+import okhttp3.Response;
 
 public class HomeActivity extends BaseActivity implements OnClickListener
 {
@@ -227,20 +235,81 @@ public class HomeActivity extends BaseActivity implements OnClickListener
     {
         if (keyCode == KeyEvent.KEYCODE_BACK)
         {
-            LogUtils.LOGE(TAG, "==KEYCODE_BACK==" + lastTime);
-            long currentTime = System.currentTimeMillis();
-            if (currentTime - lastTime < 2000)
-            {
-                this.finish();
-            }
-            else
-            {
-                lastTime = currentTime;
-                showMessage(R.string.again_click_exit);
-            }
+            //            LogUtils.LOGE(TAG, "==KEYCODE_BACK==" + lastTime);
+            //            long currentTime = System.currentTimeMillis();
+            //            if (currentTime - lastTime < 2000)
+            //            {
+            //                this.finish();
+            //            }
+            //            else
+            //            {
+            //                lastTime = currentTime;
+            //                showMessage(R.string.again_click_exit);
+            //            }
+            quitSureDialog();
             return true;
         }
         return super.onKeyUp(keyCode, event);
+    }
+    
+    private void quitSureDialog()
+    {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle(R.string.dialog_title);
+        dialog.setMessage(R.string.dialog_quit_msg);
+        dialog.setPositiveButton(R.string.dialog_sure, new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                dialog.dismiss();
+                reqLogout();
+            }
+        });
+        dialog.setNegativeButton(R.string.dialog_cancel, null);
+        dialog.show();
+    }
+    
+    /** 登出
+     * <功能详细描述>
+     * @param isLogin 验证成功是否登录
+     * @see [类、类#方法、类#成员]
+     */
+    private void reqLogout()
+    {
+        if (!checkNetWork())
+        {
+            HomeActivity.this.finish();
+            return;
+        }
+        showLoadDialog();
+        APIServer.reqLogout(this, new HttpCallback()
+        {
+            
+            @Override
+            public void onSuccess(int statusCode, String msg, JSONObject jsonObject, Call call, Response response)
+            {
+                hideLoadDialog();
+                HomeActivity.this.finish();
+            }
+            
+            @Override
+            public void onError(Call call, Exception e)
+            {
+                showMessage(getString(R.string.net_connect_right) + "(" + e.getMessage() + ")");
+                hideLoadDialog();
+                HomeActivity.this.finish();
+            }
+            
+            @Override
+            public void onFailure(int statusCode, String msg, Call call, Response response)
+            {
+                showMessage(msg);
+                hideLoadDialog();
+                HomeActivity.this.finish();
+            }
+            
+        });
     }
     
 }

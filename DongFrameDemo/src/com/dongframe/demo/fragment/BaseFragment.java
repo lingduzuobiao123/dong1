@@ -47,7 +47,7 @@ public abstract class BaseFragment extends Fragment
     public void initLoadDialog()
     {
         proDialog = new ProgressDialog(getActivity());
-        proDialog.setTitle("加载中...");
+        proDialog.setTitle(R.string.dialog_progress);
     }
     
     public void showLoadDialog()
@@ -73,12 +73,12 @@ public abstract class BaseFragment extends Fragment
     
     public void showMessage(String msg)
     {
-        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity().getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
     }
     
     public void showMessage(int msg)
     {
-        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity().getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
     }
     
     /**
