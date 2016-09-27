@@ -56,14 +56,14 @@ public class User implements Serializable
         return usertype;
     }
     
-    private Date addtime;
+    private long addtime;
     
-    public void setAddtime(Date addtime)
+    public void setAddtime(long addtime)
     {
         this.addtime = addtime;
     }
     
-    public Date getAddtime()
+    public long getAddtime()
     {
         return addtime;
     }
