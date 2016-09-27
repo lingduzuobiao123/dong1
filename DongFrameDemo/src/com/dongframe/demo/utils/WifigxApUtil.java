@@ -335,6 +335,11 @@ public class WifigxApUtil
         return android.os.Build.MODEL;
     }
     
+    public static String getOSVer()
+    {
+        return String.valueOf(android.os.Build.VERSION.SDK_INT);
+    }
+    
     // 获取手机的mac地址
     @SuppressLint("NewApi")
     public static String getLocalMacAddress(Context context)

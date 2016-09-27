@@ -7,11 +7,17 @@ import android.view.ViewGroup;
 
 public class SettingFragment extends BaseFragment
 {
-    public SettingFragment(int tab)
+    /**
+     * 静态工厂方法需要一个int型的值来初始化fragment的参数，
+     * 然后返回新的fragment到调用者 
+     */
+    public static SettingFragment newInstance(int tab)
     {
+        SettingFragment f = new SettingFragment();
         //        Bundle args = new Bundle();
         //        args.putInt("tab", tab);
-        //        setArguments(args);
+        //        f.setArguments(args);
+        return f;
     }
     
     @Override

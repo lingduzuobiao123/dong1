@@ -23,7 +23,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import okhttp3.Call;
 import okhttp3.Response;
 
@@ -119,7 +118,7 @@ public class HomeActivity extends BaseActivity implements OnClickListener
                 tabText3.setSelected(false);
                 if (null == mHomeFragment)
                 {
-                    mHomeFragment = new HomeFragment(FRAGMENT_TAB_HOME);
+                    mHomeFragment = HomeFragment.newInstance(FRAGMENT_TAB_HOME);
                 }
                 fragment = mHomeFragment;
                 desTab = TAB_HOME_NAME;
@@ -130,7 +129,7 @@ public class HomeActivity extends BaseActivity implements OnClickListener
                 tabText3.setSelected(false);
                 if (null == mMessageFragment)
                 {
-                    mMessageFragment = new MessageFragment(FRAGMENT_TAB_MESSAGE);
+                    mMessageFragment = MessageFragment.newInstance(FRAGMENT_TAB_MESSAGE);
                 }
                 fragment = mMessageFragment;
                 desTab = TAB_MESSAGE_NAME;
@@ -141,7 +140,7 @@ public class HomeActivity extends BaseActivity implements OnClickListener
                 tabText3.setSelected(true);
                 if (null == mSettingFragment)
                 {
-                    mSettingFragment = new SettingFragment(FRAGMENT_TAB_SETTING);
+                    mSettingFragment = SettingFragment.newInstance(FRAGMENT_TAB_SETTING);
                 }
                 fragment = mSettingFragment;
                 desTab = TAB_SETTING_NAME;

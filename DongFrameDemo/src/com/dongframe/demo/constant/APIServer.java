@@ -55,6 +55,18 @@ public class APIServer
         OkHttpUtils.getInstance().asyncGet(context, url, callback);
     }
     
+    /** 获取上级区域树
+     * <功能详细描述>
+     * @param userName
+     * @param userPwd
+     * @see [类、类#方法、类#成员]
+     */
+    public static void reqUpArea(Context context, HttpCallback callback)
+    {
+        String url = XIANMWANG + "getUpArea.json";
+        OkHttpUtils.getInstance().asyncGet(context, url, callback);
+    }
+    
     /** 登录接口
      * <功能详细描述>
      * @param userName
