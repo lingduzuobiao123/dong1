@@ -4,13 +4,18 @@ import org.json.JSONObject;
 
 import com.dong.frame.view.ViewAttacher;
 import com.dongframe.demo.R;
-import com.dongframe.demo.constant.APIServer;
+import com.dongframe.demo.dialogs.UpgradeDialog;
 import com.dongframe.demo.fragment.HomeFragment;
 import com.dongframe.demo.fragment.MessageFragment;
 import com.dongframe.demo.fragment.SettingFragment;
+import com.dongframe.demo.https.APIServer;
 import com.dongframe.demo.https.HttpCallback;
+import com.dongframe.demo.https.JsonParsesInfo;
+import com.dongframe.demo.infos.Software;
 import com.dongframe.demo.utils.LogUtils;
+import com.dongframe.demo.utils.SharedUtil;
 import com.dongframe.demo.utils.StringUtils;
+import com.dongframe.demo.utils.WifigxApUtil;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -72,6 +77,7 @@ public class HomeActivity extends BaseActivity implements OnClickListener
         ViewAttacher.attach(this);
         initView();
         setListener();
+        checkUpgrade();
     }
     
     private void initView()
@@ -227,6 +233,49 @@ public class HomeActivity extends BaseActivity implements OnClickListener
                 e.printStackTrace();
             }
         }
+    }
+    
+    /** 检测更新
+     * <功能详细描述>
+     * @see [类、类#方法、类#成员]
+     */
+    private void checkUpgrade()
+    {
+        if (!checkNetWork())
+        {
+            return;
+        }
+        APIServer.reqUpgrade(this, new HttpCallback()
+        {
+            
+            @Override
+            public void onSuccess(int statusCode, String msg, JSONObject jsonObject, Call call, Response response)
+            {
+                showMessage("检测更新成功");
+                Software software = JsonParsesInfo.upgradeParse(jsonObject);
+                SharedUtil.setDownLoadUrl(HomeActivity.this, software.getUpdateUrl());
+                if (WifigxApUtil.isInitVersion(HomeActivity.this, software))
+                {
+                    new UpgradeDialog(HomeActivity.this);
+                }
+            }
+            
+            @Override
+            public void onError(Call call, Exception e)
+            {
+                showMessage(getString(R.string.net_connect_right) + "(" + e.getMessage() + ")");
+                LogUtils.LOGD(TAG,
+                    "checkUpgrade==onError==" + getString(R.string.net_connect_right) + "(" + e.getMessage() + ")");
+            }
+            
+            @Override
+            public void onFailure(int statusCode, String msg, Call call, Response response)
+            {
+                showMessage(msg);
+                LogUtils.LOGD(TAG, "checkUpgrade==onFailure==" + msg);
+            }
+            
+        });
     }
     
     @Override

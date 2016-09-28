@@ -14,6 +14,7 @@
     <string name="dialog_message">您还没有开启GPS,请开启GPS</string>
     <string name="dialog_open">开启</string>
     <string name="dialog_cancel">取消</string>
+    <string name="dialog_upgrade">升级</string>
     <string name="dialog_progress">请稍等...</string>
 
     <!-- 登录注册 -->
@@ -29,5 +30,12 @@
 
     <!-- 关于我们 -->
     <string name="aswescore_no_apply">手机未检测到应用市场</string>
+    <!-- 版本检测 -->
+    <string name="version_upgrade_checking">正在检查中，请稍等...</string>
+    <string name="version_best_news">已经是最新版本</string>
+    <string name="version_noti_title">WiFi共享精灵更新包下载中</string>
+    <string name="serivce_start_download">检测到新版本可更新</string>
+    <string name="setting_version_str">WiFi共享精灵</string>
+    <string name="upgrade_fail_txt">升级失败</string>
 
 </resources>

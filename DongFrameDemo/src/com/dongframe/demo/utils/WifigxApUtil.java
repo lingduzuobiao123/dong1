@@ -12,6 +12,7 @@ import java.util.List;
 import com.dongframe.demo.DongApplication;
 import com.dongframe.demo.R;
 import com.dongframe.demo.infos.Software;
+import com.dongframe.demo.upgrade.UpgradeService;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -48,9 +49,76 @@ public class WifigxApUtil
     
     private static int statusBarHeight = 0;
     
-    private static String keyfield = "";// key
+    // 获取屏幕宽度
+    public static int getDisplayWidth(Context context)
+    {
+        if (displayWidth <= 0)
+        {
+            WindowManager wm = (WindowManager)context.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
+            DisplayMetrics dm = new DisplayMetrics();
+            wm.getDefaultDisplay().getMetrics(dm);
+            displayWidth = dm.widthPixels;
+        }
+        return displayWidth;
+    }
     
-    private static String userId = "";// 用户ID
+    // 获取屏幕高度
+    public static int getDisplayHeight(Context context)
+    {
+        if (displayHeight <= 0)
+        {
+            WindowManager wm = (WindowManager)context.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
+            DisplayMetrics dm = new DisplayMetrics();
+            wm.getDefaultDisplay().getMetrics(dm);
+            displayHeight = dm.heightPixels;
+        }
+        return displayHeight;
+    }
+    
+    /**
+     * 获得状态栏的高
+     *
+     * @param context
+     * @return
+     */
+    public static int getStatusBarHeight(Context context)
+    {
+        if (statusBarHeight <= 0)
+        {
+            try
+            {
+                Class<?> c = Class.forName("com.android.internal.R$dimen");
+                Object obj = c.newInstance();
+                Field field = c.getField("status_bar_height");
+                int x = Integer.parseInt(field.get(obj).toString());
+                statusBarHeight = context.getResources().getDimensionPixelSize(x);
+            }
+            catch (Exception e)
+            {
+                LogUtils.LOGE(TAG, "get status bar height fail");
+            }
+        }
+        return statusBarHeight;
+    }
+    
+    /**
+     * 获得屏幕密度
+     *
+     * @param context
+     * @return
+     */
+    public static float getScreenDensity(Context context)
+    {
+        if (screenDensity <= 0)
+        {
+            WindowManager wm = (WindowManager)context.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
+            DisplayMetrics dm = new DisplayMetrics();
+            wm.getDefaultDisplay().getMetrics(dm);
+            screenDensity = dm.density;
+        }
+        SharedUtil.storeScreenDensity(context, screenDensity);
+        return screenDensity;
+    }
     
     /**
      * 返回当前程序版本名
@@ -189,77 +257,6 @@ public class WifigxApUtil
         return imei;
     }
     
-    // 获取屏幕宽度
-    public static int getDisplayWidth(Context context)
-    {
-        if (displayWidth <= 0)
-        {
-            WindowManager wm = (WindowManager)context.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
-            DisplayMetrics dm = new DisplayMetrics();
-            wm.getDefaultDisplay().getMetrics(dm);
-            displayWidth = dm.widthPixels;
-        }
-        return displayWidth;
-    }
-    
-    // 获取屏幕高度
-    public static int getDisplayHeight(Context context)
-    {
-        if (displayHeight <= 0)
-        {
-            WindowManager wm = (WindowManager)context.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
-            DisplayMetrics dm = new DisplayMetrics();
-            wm.getDefaultDisplay().getMetrics(dm);
-            displayHeight = dm.heightPixels;
-        }
-        return displayHeight;
-    }
-    
-    /**
-     * 获得状态栏的高
-     *
-     * @param context
-     * @return
-     */
-    public static int getStatusBarHeight(Context context)
-    {
-        if (statusBarHeight <= 0)
-        {
-            try
-            {
-                Class<?> c = Class.forName("com.android.internal.R$dimen");
-                Object obj = c.newInstance();
-                Field field = c.getField("status_bar_height");
-                int x = Integer.parseInt(field.get(obj).toString());
-                statusBarHeight = context.getResources().getDimensionPixelSize(x);
-            }
-            catch (Exception e)
-            {
-                LogUtils.LOGE(TAG, "get status bar height fail");
-            }
-        }
-        return statusBarHeight;
-    }
-    
-    /**
-     * 获得屏幕密度
-     *
-     * @param context
-     * @return
-     */
-    public static float getScreenDensity(Context context)
-    {
-        if (screenDensity <= 0)
-        {
-            WindowManager wm = (WindowManager)context.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
-            DisplayMetrics dm = new DisplayMetrics();
-            wm.getDefaultDisplay().getMetrics(dm);
-            screenDensity = dm.density;
-        }
-        SharedUtil.storeScreenDensity(context, screenDensity);
-        return screenDensity;
-    }
-    
     public static Object invokeDeclaredMethod(Class<?> declaredClass, Object classObject, String methodName,
         Object params[], Class<?> paramTypes[])
     {
@@ -282,37 +279,6 @@ public class WifigxApUtil
             LogUtils.LOGV(TAG, "Exception in invokeDeclaredMethod", exception);
         }
         return ret;
-    }
-    
-    /**
-     * 判断是否最新版本
-     *
-     * @param context
-     * @param software
-     * @return
-     */
-    public static boolean isInitVersion(Context context, Software software)
-    {
-        if (null == software)
-        {
-            return false;
-        }
-        Software oldSoft = SharedUtil.getSoftUpdate(context);
-        int newsCode = software.getVersionCode();
-        int oldCode = oldSoft.getVersionCode();
-        int curCode = getAppVersionCode(context);
-        if (newsCode > oldCode && newsCode > curCode && newsCode > 1)
-        {
-            FileUtil.deleteApkFile(context);
-            SharedUtil.setUpgradeFileDownloaded(context, false);
-            SharedUtil.setSoftUpdate(context, software);
-            return true;
-        }
-        if (newsCode == oldCode && newsCode > curCode)
-        {
-            return true;
-        }
-        return false;
     }
     
     /**
@@ -340,43 +306,6 @@ public class WifigxApUtil
         return String.valueOf(android.os.Build.VERSION.SDK_INT);
     }
     
-    // 获取手机的mac地址
-    @SuppressLint("NewApi")
-    public static String getLocalMacAddress(Context context)
-    {
-        try
-        {
-            for (Enumeration e = NetworkInterface.getNetworkInterfaces(); e.hasMoreElements();)
-            {
-                NetworkInterface item = (NetworkInterface)e.nextElement();
-                byte[] mac = item.getHardwareAddress();
-                if (mac != null && mac.length > 0)
-                {
-                    // 下面代码是把mac地址拼装成String
-                    StringBuffer sb = new StringBuffer();
-                    
-                    for (int i = 0; i < mac.length; i++)
-                    {
-                        if (i != 0)
-                        {
-                            sb.append("-");
-                        }
-                        // mac[i] & 0xFF 是为了把byte转化为正整数
-                        String s = Integer.toHexString(mac[i] & 0xFF);
-                        sb.append(s.length() == 1 ? 0 + s : s);
-                    }
-                    
-                    // 把字符串所有小写字母改为大写成为正规的mac地址并返回
-                    return sb.toString().toUpperCase();
-                }
-            }
-        }
-        catch (Exception e)
-        {
-        }
-        return "";
-    }
-    
     public static String getVersion()
     {
         return android.os.Build.VERSION.RELEASE;
@@ -390,26 +319,6 @@ public class WifigxApUtil
     public static String getChannelID()
     {
         return DongApplication.getInstance().getChannelId();
-    }
-    
-    /**
-     * 设置用户ID
-     * @return
-     */
-    public static void setUserId(String userId)
-    {
-        WifigxApUtil.userId = userId;
-    }
-    
-    /**
-     * 获得用户ID
-     * @param context
-     * @return
-     */
-    public static String getUserId(Context context)
-    {
-        
-        return userId;
     }
     
     /**
@@ -457,6 +366,43 @@ public class WifigxApUtil
             e.printStackTrace();
         }
         return macAddress;
+    }
+    
+    // 获取手机的mac地址
+    @SuppressLint("NewApi")
+    public static String getLocalMacAddress(Context context)
+    {
+        try
+        {
+            for (Enumeration e = NetworkInterface.getNetworkInterfaces(); e.hasMoreElements();)
+            {
+                NetworkInterface item = (NetworkInterface)e.nextElement();
+                byte[] mac = item.getHardwareAddress();
+                if (mac != null && mac.length > 0)
+                {
+                    // 下面代码是把mac地址拼装成String
+                    StringBuffer sb = new StringBuffer();
+                    
+                    for (int i = 0; i < mac.length; i++)
+                    {
+                        if (i != 0)
+                        {
+                            sb.append("-");
+                        }
+                        // mac[i] & 0xFF 是为了把byte转化为正整数
+                        String s = Integer.toHexString(mac[i] & 0xFF);
+                        sb.append(s.length() == 1 ? 0 + s : s);
+                    }
+                    
+                    // 把字符串所有小写字母改为大写成为正规的mac地址并返回
+                    return sb.toString().toUpperCase();
+                }
+            }
+        }
+        catch (Exception e)
+        {
+        }
+        return "";
     }
     
     /**
@@ -525,6 +471,45 @@ public class WifigxApUtil
     {
         LocationManager locationManager = (LocationManager)context.getSystemService(Context.LOCATION_SERVICE);
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+    }
+    
+    /**
+     * 判断是否最新版本
+     *
+     * @param context
+     * @param software
+     * @return
+     */
+    public static boolean isInitVersion(Context context, Software software)
+    {
+        if (null == software)
+        {
+            return false;
+        }
+        Software oldSoft = SharedUtil.getSoftUpdate(context);
+        int newsCode = software.getVersionCode();
+        int oldCode = oldSoft.getVersionCode();
+        int curCode = getAppVersionCode(context);
+        if (newsCode > oldCode && newsCode > curCode && newsCode > 1)
+        {
+            FileUtil.deleteApkFile(context);
+            SharedUtil.setUpgradeFileDownloaded(context, false);
+            SharedUtil.setSoftUpdate(context, software);
+            return true;
+        }
+        if (newsCode == oldCode && newsCode > curCode)
+        {
+            return true;
+        }
+        return false;
+    }
+    
+    public static void startDownLoadApkServer(Context context)
+    {
+        Intent intent = new Intent(UpgradeService.SERVICE_DOWNLOAD_APK);
+        intent.putExtra(UpgradeService.DOWNLOAD_HIDE_KEY, false);
+        intent.setClass(context, UpgradeService.class);
+        context.startService(intent);
     }
     
     /**

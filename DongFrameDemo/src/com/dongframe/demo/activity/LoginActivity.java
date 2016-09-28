@@ -1,22 +1,9 @@
 package com.dongframe.demo.activity;
 
-import java.util.HashMap;
-import java.util.Map;
+import okhttp3.Call;
+import okhttp3.Response;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
-
-import com.dong.frame.view.ViewAttacher;
-import com.dongframe.demo.DongApplication;
-import com.dongframe.demo.R;
-import com.dongframe.demo.constant.APIServer;
-import com.dongframe.demo.https.HttpCallback;
-import com.dongframe.demo.infos.User;
-import com.dongframe.demo.utils.LogUtils;
-import com.dongframe.demo.utils.SharedUser;
-import com.dongframe.demo.utils.SharedUtil;
-import com.dongframe.demo.utils.StringUtils;
-import com.dongframe.demo.utils.WifigxApUtil;
 
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
@@ -36,8 +23,18 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.TextView;
-import okhttp3.Call;
-import okhttp3.Response;
+
+import com.dong.frame.view.ViewAttacher;
+import com.dongframe.demo.R;
+import com.dongframe.demo.https.APIServer;
+import com.dongframe.demo.https.HttpCallback;
+import com.dongframe.demo.https.JsonParsesInfo;
+import com.dongframe.demo.infos.User;
+import com.dongframe.demo.utils.LogUtils;
+import com.dongframe.demo.utils.SharedUser;
+import com.dongframe.demo.utils.SharedUtil;
+import com.dongframe.demo.utils.StringUtils;
+import com.dongframe.demo.utils.WifigxApUtil;
 
 public class LoginActivity extends BaseActivity implements OnClickListener
 {
@@ -330,34 +327,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener
                 {
                     APIServer.cookie = msg;
                     LogUtils.LOGD(TAG, "APIServer.cookie==" + APIServer.cookie);
-                    JSONObject jsonb = jsonObject.optJSONObject("userData");
-                    JSONObject jsonUser = jsonb.optJSONObject("user");
-                    User user = new User();
-                    user.setId(jsonUser.optInt("id"));
-                    user.setUsername(jsonUser.optString("username"));
-                    user.setPassword(jsonUser.optString("password"));
-                    user.setUsertype(jsonUser.optInt("usertype"));
-                    user.setAddtime(jsonUser.optLong("addtime"));
-                    user.setAreacode(jsonUser.optString("areacode"));
-                    user.setAreaname(jsonUser.optString("areaname"));
-                    user.setMobile(jsonUser.optString("mobile"));
-                    user.setCompany(jsonUser.optString("company"));
-                    user.setRemark(jsonUser.optString("remark"));
-                    user.setState(jsonUser.optInt("state"));
-                    user.setAliasname(jsonUser.optString("aliasname"));
-                    user.setParentUserId(jsonUser.optInt("parentUserId"));
-                    user.setConditionUserName(jsonUser.optString("conditionUserName"));
-                    JSONArray jsonRight = jsonb.optJSONArray("userRight");
-                    if (null != jsonRight && jsonRight.length() > 0)
-                    {
-                        Map<String, String> rightMap = new HashMap<String, String>();
-                        for (int i = 0; i < jsonRight.length(); i++)
-                        {
-                            String key = jsonRight.optString(i);
-                            rightMap.put(key, key);
-                        }
-                        DongApplication.getInstance().setRightMap(rightMap);
-                    }
+                    User user = JsonParsesInfo.loginParse(jsonObject);
                     SharedUser.setUserMsg(LoginActivity.this, user);
                     Intent intent = new Intent();
                     intent.setClass(LoginActivity.this, HomeActivity.class);

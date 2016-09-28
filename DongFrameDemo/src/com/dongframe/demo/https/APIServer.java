@@ -1,7 +1,4 @@
-package com.dongframe.demo.constant;
-
-import com.dongframe.demo.https.HttpCallback;
-import com.dongframe.demo.https.OkHttpUtils;
+package com.dongframe.demo.https;
 
 import android.content.Context;
 import okhttp3.FormBody;
@@ -19,8 +16,9 @@ public class APIServer
      */
     public final static String XIANMWANG = "http://61.130.8.18:8889/backoffice/";
     
-    /** 二次验证
-     * <功能详细描述>
+    /**
+     * 二次验证 <功能详细描述>
+     * 
      * @param userName
      * @param userPwd
      * @see [类、类#方法、类#成员]
@@ -31,8 +29,22 @@ public class APIServer
         OkHttpUtils.getInstance().asyncGet(context, url, callback);
     }
     
-    /** 登录接口
-     * <功能详细描述>
+    /**
+     * 升级 <功能详细描述>
+     * 
+     * @param userName
+     * @param userPwd
+     * @see [类、类#方法、类#成员]
+     */
+    public static void reqUpgrade(Context context, HttpCallback callback)
+    {
+        String url = XIANMWANG + "user_getVersion.action";
+        OkHttpUtils.getInstance().asyncGet(context, url, callback);
+    }
+    
+    /**
+     * 登录接口 <功能详细描述>
+     * 
      * @param userName
      * @param userPwd
      * @see [类、类#方法、类#成员]
@@ -43,8 +55,9 @@ public class APIServer
         OkHttpUtils.getInstance().asyncGet(context, url, callback);
     }
     
-    /** 登出接口
-     * <功能详细描述>
+    /**
+     * 登出接口 <功能详细描述>
+     * 
      * @param userName
      * @param userPwd
      * @see [类、类#方法、类#成员]
@@ -55,8 +68,9 @@ public class APIServer
         OkHttpUtils.getInstance().asyncGet(context, url, callback);
     }
     
-    /** 获取上级区域树
-     * <功能详细描述>
+    /**
+     * 获取上级区域树 <功能详细描述>
+     * 
      * @param userName
      * @param userPwd
      * @see [类、类#方法、类#成员]
@@ -67,8 +81,9 @@ public class APIServer
         OkHttpUtils.getInstance().asyncGet(context, url, callback);
     }
     
-    /** 登录接口
-     * <功能详细描述>
+    /**
+     * 登录接口 <功能详细描述>
+     * 
      * @param userName
      * @param userPwd
      * @see [类、类#方法、类#成员]

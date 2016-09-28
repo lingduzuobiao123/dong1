@@ -146,6 +146,27 @@ public class SharedUtil
         }
     }
     
+	/**
+	 * 保存升级下载apk的url
+	 * @param context
+	 * @param updateUrl
+	 */
+	public static void setDownLoadUrl(Context context, String updateUrl) {
+		if (StringUtils.isEmpty(updateUrl)) {
+			return;
+		}
+		try {
+			SharedPreferences sp = context
+					.getSharedPreferences(SP_NAME_MAIN, 0);
+			Editor editor = sp.edit();
+			editor.putString(MAIN_MORE_SOFTUPDATE_APK_URL, updateUrl);
+			editor.commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+    
     // 存储apk的大小
     public static void setSoftUpdateApkSize(Context context, long apkSize)
     {
@@ -322,5 +343,5 @@ public class SharedUtil
             e.printStackTrace();
         }
     }
-    
+
 }

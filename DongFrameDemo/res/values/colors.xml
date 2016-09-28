@@ -8,5 +8,11 @@
     <color name="color_text_1">#404040</color>
     <color name="color_text_2">#636268</color>
     <color name="color_text_3">#f599af</color>
+    
+     <!--upgrade notification -->
+    <color name="client_push_notification_title">#ffffff</color>
+    <color name="client_push_notification_content">#f0f0f0</color>
+    <color name="darkgray">#5c5c5c</color>
+    <color name="darkred">#cc0000</color>
 
 </resources>

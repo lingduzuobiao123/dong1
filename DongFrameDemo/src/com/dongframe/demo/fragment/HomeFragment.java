@@ -3,8 +3,9 @@ package com.dongframe.demo.fragment;
 import org.json.JSONObject;
 
 import com.dongframe.demo.R;
-import com.dongframe.demo.constant.APIServer;
+import com.dongframe.demo.https.APIServer;
 import com.dongframe.demo.https.HttpCallback;
+import com.dongframe.demo.utils.LogUtils;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -57,7 +58,7 @@ public class HomeFragment extends BaseFragment
             @Override
             public void onSuccess(int statusCode, String msg, JSONObject jsonObject, Call call, Response response)
             {
-                
+                showMessage("请求成功");
                 hideLoadDialog();
             }
             

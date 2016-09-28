@@ -25,6 +25,15 @@
         <!-- 解决启动瞬间黑屏问题 -->
         <item name="android:windowIsTranslucent">true</item>
     </style>
+    
+    <style name="NotificationText" parent="android:TextAppearance.StatusBar.EventContent" />
+
+    <style name="NotificationTitle" parent="android:TextAppearance.StatusBar.EventContent.Title" />
+
+    <style name="progressbarStyle_Horizontal_red" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/progressbar_horizontal_red</item>
+    </style>
 
     <style name="login_line1">
         <item name="android:layout_width">match_parent</item>
